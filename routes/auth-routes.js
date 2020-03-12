@@ -8,18 +8,18 @@ router.get('/login', (req, res) => {
 
 //auth-with-google
 router.get('/google', passport.authenticate('google', {
-    scope: ['profile', 'email']
+    scope: ['email', 'profile']
 }));
+
+//callback-route-for-google-2-redirect
+router.get('/google/oauth2callback', passport.authenticate('google'), (req, res) => {
+    res.send('You reached the callback URI!');
+});
 
 //auth-logout
 router.get('/logout', (req, res) => {
-    //handle with PasspotyJS
+    //handle with PassportJS
     res.send('Logging out!');
-});
-
-//callback-route-for-google-2-redirect
-router.get('/google/oauth2callback', (req, res) => {
-    res.send('You reached the callback URI!');
 });
 
 module.exports = router;

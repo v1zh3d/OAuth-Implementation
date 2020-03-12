@@ -7,7 +7,9 @@ passport.use(
         clientID: process.env.GOOGLE_CLIENT_ID,
         clientSecret: process.env.GOOGLE_CLIENT_SECRET,
         callbackURL: '/auth/google/oauth2callback'
-    }, () => {
+    }, (accessToken, refreshToken, profile, done) => {
         //passport callback function
+        console.log('Passport Callback is fired!');
+        console.log(profile);
     })
 );
