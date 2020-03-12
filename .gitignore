@@ -1,4 +1,4 @@
 #These files will be ignored
 
+node_modules/*
 nodemon.json
-*/node_modules/*
