@@ -1,0 +1,4 @@
+#These files will be ignored
+
+nodemon.json
+*/node_modules/*
