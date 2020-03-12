@@ -1,4 +1,5 @@
-const express = require("express");
+const express = require('express');
+const authRoutes = require('./routes/auth-routes');
 
 const app = express();
 
@@ -6,9 +7,12 @@ const app = express();
 app.set('view engine', 'ejs');
 
 //create home route
-app.get('/', (req,res) => {
+app.get('/', (req, res) => {
     res.render('index');
 });
+
+//setup routes
+app.use('/auth', authRoutes);
 
 app.listen(process.env.PORT || 3000, () => {
     console.log("Server Listening on port 3000!");
