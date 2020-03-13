@@ -13,7 +13,7 @@ router.get('/google', passport.authenticate('google', {
 
 //callback-route-for-google-2-redirect
 router.get('/google/oauth2callback', passport.authenticate('google'), (req, res) => {
-    res.send('You reached the callback URI!');
+    res.send(req.user);
 });
 
 //auth-logout
