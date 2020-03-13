@@ -11,5 +11,7 @@ passport.use(
         //passport callback function
         console.log('Passport Callback is fired!');
         console.log(profile);
+        console.log(profile._json.name);
+        console.log(profile._json.email);
     })
 );
