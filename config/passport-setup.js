@@ -1,5 +1,6 @@
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20');
+const conn = require('./database');
 
 passport.use(
     new GoogleStrategy({
@@ -10,8 +11,21 @@ passport.use(
     }, (accessToken, refreshToken, profile, done) => {
         //passport callback function
         console.log('Passport Callback is fired!');
-        console.log(profile);
-        console.log(profile._json.name);
-        console.log(profile._json.email);
+        //check already exist user
+        var q = "select id from google";
+        conn.query(q, (err, result, fields) => {
+            if(err) throw err;
+            else if (result[0].id == profile.id) {
+                console.log('User Already Exists!');
+            }
+            else {
+                //add if new user
+                var q = "insert into google values ('" + profile.id + "', '" + profile._json.name + "', '" + profile._json.email + "')";
+                conn.query(q, (err, result) => {
+                    if (err) throw err;
+                    console.log("User Added!");
+                });
+            }
+        });
     })
 );
