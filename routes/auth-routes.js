@@ -13,13 +13,14 @@ router.get('/google', passport.authenticate('google', {
 
 //callback-route-for-google-2-redirect
 router.get('/google/oauth2callback', passport.authenticate('google'), (req, res) => {
-    res.send(req.user);
+    res.redirect('/profile/');
 });
 
 //auth-logout
 router.get('/logout', (req, res) => {
     //handle with PassportJS
-    res.send('Logging out!');
+    req.logOut();
+    res.redirect('/');
 });
 
 module.exports = router;

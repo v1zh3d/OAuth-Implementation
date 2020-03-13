@@ -1,5 +1,6 @@
 const express = require('express');
 const authRoutes = require('./routes/auth-routes');
+const profileRoutes = require('./routes/profile-routes');
 const passportSetup = require('./config/passport-setup');
 const cookieSession = require('cookie-session');
 const passport = require('passport');
@@ -21,11 +22,12 @@ app.use(passport.session());
 
 //create home route
 app.get('/', (req, res) => {
-    res.render('index');
+    res.render('index', {user: req.user});
 });
 
 //setup routes
 app.use('/auth', authRoutes);
+app.use('/profile', profileRoutes);
 
 app.listen(process.env.PORT || 3000, () => {
     console.log("Server Listening on port 3000!");

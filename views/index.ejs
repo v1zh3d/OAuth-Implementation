@@ -49,16 +49,20 @@
     <nav>
         <ul>
             <li><a href="/">Homepage</a></li>
+            <li><a href="/profile/">Profile</a></li>
+            <% if(!user) { %>
             <li><a href="/auth/login">Login</a></li>
+            <% } else { %>
             <li><a href="/auth/logout">Logout</a></li>
+            <% } %>
         </ul>
     </nav>
     <header>
-        <h1>OAuth Implementation using NodeJS</h1>
+        <h1>OAuth Implementation using NodeJS & MySQL</h1>
         <h2>Homepage</h2>
     </header>
     <main>
-        <p>Probably the best OAuth Implementation</p>
+        <p>Probably the best OAuth Implementation using MySQL.</p>
     </main>
 </body>
 </html>
