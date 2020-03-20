@@ -12,7 +12,22 @@ router.get('/google', passport.authenticate('google', {
 }));
 
 //callback-route-for-google-2-redirect
-router.get('/google/oauth2callback', passport.authenticate('google'), (req, res) => {
+router.get('/google/oauth2callback', passport.authenticate('google', {
+            failureRedirect: '/login'
+        }), (req, res) => {
+    res.redirect('/profile/');
+});
+
+//auth-with-facebook
+router.get('/facebook', passport.authenticate('facebook', {
+    authType: 'rerequest',
+    scope: ['email']
+}));
+
+//callback-route-for-facebook-2-redirect
+router.get('/facebook/oauth2callback', passport.authenticate('facebook', {
+            failureRedirect: '/login'
+        }), (req, res) => {
     res.redirect('/profile/');
 });
 
